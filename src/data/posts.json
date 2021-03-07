@@ -83,7 +83,7 @@
        "title":"Internship High performance computing in Python",
        "city":"Gerlingen (Württemberg)",
        "employer":"Robert Bosch GmbH",
-       "requirements":"NA",
+       "requirements":[""],
        "tasks":[
           "Working in a project team on the development of a Python library",
           "Parallelization of algorithms for use on a cluster",
