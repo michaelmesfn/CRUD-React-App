@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import PostList from './components/PostList';
+import ReadPostList from './components/ReadPostList';
+import UpdatePostList from './components/UpdatePostList';
+import DeletePostList from './components/DeletePostList';
+import NewPostList from './components/NewPostList';
+import Try from './components/Try'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container">
+        <Switch>
+          <Route path="/" exact component={PostList} />
+          <Route path="/elements" component={PostList} />
+          <Route path="/read-element/:index" component={ReadPostList} />
+          <Route path="/update-element/:index" component={UpdatePostList} />
+          <Route path="/delete-element/:index" component={DeletePostList} />
+          <Route path="/new-element/" component={NewPostList} />
+          <Route path="/try/" component={Try} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

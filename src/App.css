@@ -28,6 +28,34 @@
   color: #61dafb;
 }
 
+.link-button {
+  color: blue;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.link-button:hover,
+.link-button:focus {
+  text-decoration: underline;
+}
+
+.btn-link{
+  margin: 0;
+  text-align: left;
+  white-space:normal !important;
+  word-wrap: break-word; 
+}
+
+.heighttext{
+  height:30px
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
