@@ -6,7 +6,9 @@ import '../App.css';
 class ReadPostList extends Component {
     constructor(props) {
         super(props)
+        // intializing state values
         this.state = {
+            //saving the index passed from the previous page on the local var index
             index: this.props.match.params.index,
             _id: '',
             title: '',
@@ -18,6 +20,7 @@ class ReadPostList extends Component {
     }
 
     componentDidMount() {
+        //this state setters
         console.log(this.state.index);
         this.setState({
             _id: PostData[this.state.index]._id,
@@ -28,10 +31,11 @@ class ReadPostList extends Component {
             tasks: PostData[this.state.index].tasks
         });
     }
-
+    //takes to index view
     cancel() {
         this.props.history.push('/index-view');
     }
+    //takes to home view
     home() {
         this.props.history.push('/');
     }
@@ -46,8 +50,8 @@ class ReadPostList extends Component {
                             <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
                                 <img className="sized" src={logo} alt='talentbait_logo' ></img>
                             </center></button>
+                            {/* creating readonly input fields initialized with state fields */}
                             <div className="card-body">
-                                <form>
                                     <div className="form-group">
                                         <label> ID: </label>
                                         <input readOnly placeholder="ID" name="_id" className="form-control"
@@ -70,8 +74,7 @@ class ReadPostList extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label> Requirements: </label>
-                                        {/* <input readOnly placeholder="Requirements" name="requirements" className="form-control"
-                                            value={this.state.requirements} /> */}
+                                        {/* mapping members of the requirements array to separate fields */}
                                         <div className="row">
                                             <center><table className="table table-borderless table-hover reqtask-table" >
                                                 <tbody>
@@ -87,6 +90,7 @@ class ReadPostList extends Component {
                                             </table></center>
                                         </div>
                                     </div>
+                                    {/* mapping members of the tasks array to separate fields */}
                                     <div className="form-group">
                                         <label>Tasks: </label>
                                         {/* <input readOnly placeholder="Tasks" name="tasks" className="form-control"
@@ -106,8 +110,8 @@ class ReadPostList extends Component {
                                             </table></center>
                                         </div>
                                     </div>
+                                    {/* return to index view */}
                                     <button className="btn btn-secondary " onClick={this.cancel.bind(this)} style={{ marginLeft: "335px" }}>Go to Index View</button>
-                                </form>
                             </div>
                         </div>
                     </div>

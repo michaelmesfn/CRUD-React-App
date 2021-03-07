@@ -31,6 +31,7 @@ class PostList extends Component {
     componentDidMount() {
         console.log(PostData);
     }
+    //takes to home from the top logo
     home() {
         this.props.history.push('/');
     }
@@ -38,6 +39,7 @@ class PostList extends Component {
     render() {
         return (
             <div>
+                {/* logo on top serves as a link to the home-view */}
                 <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
                     <img className="sized" src={logo} alt='talentbait_logo' ></img>
                 </center></button>
@@ -53,6 +55,7 @@ class PostList extends Component {
                         </thead>
                         <tbody>
                             {
+                                //mapping every member of PostData to an element and displaying the details
                                 //this.state.elements.map(
                                 PostData.map(
                                     (element, key) =>
@@ -67,6 +70,7 @@ class PostList extends Component {
                                                 {/* <button className="btn btn-outline-danger" onClick={() => this.deleteElement(key)}>Delete</button> */}
                                                 {/* <button className="btn btn-outline-danger" onClick={() => this.setState({ showTaskDialog: true })}>Delete</button>
                                                 <DeleteDialog show={this.state.showTaskDialog} confirm={this.state.confirm} /> */}
+                                                {/* overlay view confirming delete */}
                                                 <button className="btn btn-outline-danger" onClick={() => { if (window.confirm('Click OK to delete')) this.deleteElement(key) }}>
                                                     Delete
                                                 </button>
@@ -76,7 +80,7 @@ class PostList extends Component {
                             }
                         </tbody>
                     </table>
-
+                    {/* add new row to the table button */}
                     <button className="btn btn-primary talentbait-blue" onClick={() => this.newElement()}>New</button>
                 </div>
             </div>

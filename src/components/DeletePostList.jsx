@@ -10,6 +10,7 @@ class DeletePostList extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            // setting the state index to the index received
             index: this.props.match.params.index
         }
     }
@@ -19,9 +20,12 @@ class DeletePostList extends Component {
     }
 
     deleteElement = (e) => {
+        //prevent default stops the page from refreshing with new Data
         e.preventDefault();
+        //delete the element at the specific index
         delete PostData[this.state.index];
         console.log("Element at index " + this.state.index + " deleted");
+        //notification
         store.addNotification({
             message: "Item Deleted :)",
             type: "danger",
@@ -35,6 +39,7 @@ class DeletePostList extends Component {
             },
             width: 600
         })
+        //redirects to the index view when done
         this.props.history.push('/index-view');
     }
 
@@ -58,6 +63,7 @@ class DeletePostList extends Component {
                             </center></button>
                             <div className="card-body">
                                 <form>
+                                    {/* confirmation form */}
                                     <h4 style={{ color: 'red' }}>The item will be permanently deleted</h4>
                                     <h5>Do you wish to continue?</h5>
                                     <br></br>

@@ -23,6 +23,7 @@ class UpdatePostList extends Component {
 
     componentDidMount() {
         console.log(this.state.index);
+        // setting the current state with values from the object
         this.setState({
             _id: PostData[this.state.index]._id,
             title: PostData[this.state.index].title,
@@ -44,12 +45,14 @@ class UpdatePostList extends Component {
             tasks: this.state.tasks
         };
         console.log(element);
+        // update object
         PostData[this.state.index]._id = element._id;
         PostData[this.state.index].title = element.title;
         PostData[this.state.index].city = element.city;
         PostData[this.state.index].employer = element.employer;
         PostData[this.state.index].requirements = element.requirements;
         PostData[this.state.index].tasks = element.tasks;
+        // notification
         store.addNotification({
             message: "Updated :)",
             type: "success",
@@ -202,6 +205,7 @@ class UpdatePostList extends Component {
                                                                 <td><input placeholder="Task" name="task" className="form-control"
                                                                     value={task} onChange={(e) => this.changeTaskHandler(e, index)} /></td>
                                                                 <td>
+                                                                    {/* delete task field */}
                                                                     <button className="btn btn-outline-danger" onClick={(e) => this.deleteTaskRow(e, index)}>Delete</button>
                                                                 </td>
                                                             </tr>
@@ -209,6 +213,7 @@ class UpdatePostList extends Component {
                                                 }
                                             </tbody>
                                         </table></center>
+                                        {/* add task field */}
                                         <center><button onClick={(e) => this.appendTask(e)} className="btn btn-outline-primary">+</button></center>
                                     </div>
                                     <button className="btn btn-success" onClick={this.updateElement}>Update</button>

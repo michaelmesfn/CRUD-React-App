@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 
 function App() {
   return (
+    //routing to different urls
     <Router>
       <div className="container">
         <ReactNotification />
@@ -24,6 +25,7 @@ function App() {
           <Route path="/delete-view/:index" component={DeletePostList} />
           <Route path="/create-view/" component={NewPostList} />
         </Switch>
+        {/* footer on every page */}
         <Footer />
       </div>
     </Router>

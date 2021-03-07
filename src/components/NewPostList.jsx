@@ -10,6 +10,7 @@ import '../App.css';
 class NewPostList extends Component {
     constructor(props) {
         super(props)
+        // initialize states
         this.state = {
             index: this.props.match.params.index,
             _id: '',
@@ -26,7 +27,7 @@ class NewPostList extends Component {
 
     newElement = (e) => {
         e.preventDefault();
-
+        // setting the new element with state values
         let element = {
             _id: this.state._id,
             title: this.state.title,
@@ -52,7 +53,7 @@ class NewPostList extends Component {
         })
         this.props.history.push('/index-view');
     }
-
+    // state setters, handle user input in the text fields
     change_idHandler = (event) => {
         this.setState({ _id: event.target.value });
     }
@@ -67,8 +68,10 @@ class NewPostList extends Component {
         this.setState({ employer: event.target.value });
         // this.state.employer = event.target.value;
     }
+    //task array handler, receives index of specific task and deletes it out of the task array
     changeTaskHandler = (event, index) => {
         this.setState(state => {
+            // goes through the tasks and looks for the index provided
             const tasks = state.tasks.map((item, j) => {
                 if (j === index) {
                     item = event.target.value;
@@ -83,16 +86,21 @@ class NewPostList extends Component {
             };
         });
     }
+    //delete a task out of the tasks array
     deleteTaskRow(event, index) {
         event.preventDefault();
         this.state.tasks.splice(index, 1)
         this.setState({ tasks: this.state.tasks })
     }
+    //add a new element to the tasks array
     appendTask(event) {
         event.preventDefault();
+        //default value of the text field is intialized here
         var newTask = ``;
         this.setState(prevState => ({ tasks: prevState.tasks.concat([newTask]) }));
     }
+
+    //requirement handler, works the same way as the task handler
     changeRequirementHandler = (event, index) => {
         this.setState(state => {
             const requirements = state.requirements.map((item, j) => {
@@ -136,6 +144,8 @@ class NewPostList extends Component {
                                 <img className="sized" src={logo} alt='talentbait_logo' ></img>
                             </center></button>
                             <div className="card-body">
+                                {/* input form with values initialized to state values which are empty */}
+                                {/* respective event handlers are called on change */}
                                 <form>
                                     <div className="form-group">
                                         <label> ID: </label>
@@ -162,6 +172,7 @@ class NewPostList extends Component {
                                         <center><table className="table table-borderless table-hover reqtask-table"  >
                                             <tbody>
                                                 {
+                                                    // index is passed as a parameter to indicate which element of the array should be edited or deleted
                                                     this.state.requirements.map(
                                                         (requirement, index) =>
                                                             <tr key={index}>
@@ -175,6 +186,7 @@ class NewPostList extends Component {
                                                 }
                                             </tbody>
                                         </table></center>
+                                        {/* add new requirement field */}
                                         <center><button onClick={(e) => this.appendRequirement(e)} className="btn btn-outline-primary" >+</button></center>
                                     </div>
                                     <div className="form-group">
@@ -197,6 +209,7 @@ class NewPostList extends Component {
                                         </table></center>
                                         <center><button onClick={(e) => this.appendTask(e)} className="btn btn-outline-primary">+</button></center>
                                     </div>
+                                    {/* adds new element */}
                                     <button className="btn btn-success" onClick={this.newElement}>Add</button>
                                     <button className="btn btn-light" onClick={this.cancel.bind(this)} style={{ marginLeft: "10px" }}>Cancel</button>
                                 </form>
