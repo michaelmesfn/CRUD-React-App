@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PostData from '../data/posts.json'
 import logo from "../talentbait_logo.png";
 import '../App.css';
+
 class ReadPostList extends Component {
     constructor(props) {
         super(props)
@@ -29,7 +30,7 @@ class ReadPostList extends Component {
     }
 
     cancel() {
-        this.props.history.push('/elements');
+        this.props.history.push('/index-view');
     }
     home() {
         this.props.history.push('/');
@@ -72,7 +73,7 @@ class ReadPostList extends Component {
                                         {/* <input readOnly placeholder="Requirements" name="requirements" className="form-control"
                                             value={this.state.requirements} /> */}
                                         <div className="row">
-                                            <center><table className="table table-borderless table-hover " style={{ width: "94%", backgroundColor: "#E9ECEF" }}>
+                                            <center><table className="table table-borderless table-hover reqtask-table" >
                                                 <tbody>
                                                     {
                                                         this.state.requirements.map(
@@ -91,7 +92,7 @@ class ReadPostList extends Component {
                                         {/* <input readOnly placeholder="Tasks" name="tasks" className="form-control"
                                             value={this.state.tasks}  /> */}
                                         <div className="row">
-                                            <center><table className="table table-borderless table-hover " style={{ width: "94%", backgroundColor: "#E9ECEF" }} >
+                                            <center><table className="table table-borderless table-hover reqtask-table" >
                                                 <tbody>
                                                     {
                                                         this.state.tasks.map(
@@ -105,7 +106,7 @@ class ReadPostList extends Component {
                                             </table></center>
                                         </div>
                                     </div>
-                                    <button className="btn btn-secondary" onClick={this.cancel.bind(this)} style={{ marginLeft: "400px" }}>Go Back</button>
+                                    <button className="btn btn-secondary " onClick={this.cancel.bind(this)} style={{ marginLeft: "335px" }}>Go to Index View</button>
                                 </form>
                             </div>
                         </div>

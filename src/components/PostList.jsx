@@ -8,25 +8,25 @@ class PostList extends Component {
         super(props)
 
         this.state = {
-            elements: []
+
         };
         this.editElement = this.editElement.bind(this);
     }
 
     editElement(index) {
-        this.props.history.push(`/update-element/${index}`);
+        this.props.history.push(`/update-view/${index}`);
     }
 
     deleteElement(index) {
-        this.props.history.push(`/delete-element/${index}`);
+        this.props.history.push(`/delete-view/${index}`);
     }
 
     newElement() {
-        this.props.history.push(`/new-element/`);
+        this.props.history.push(`/create-view/`);
     }
 
     readElement(index) {
-        this.props.history.push(`/read-element/${index}`);
+        this.props.history.push(`/read-view/${index}`);
     }
     componentDidMount() {
         console.log(PostData);
@@ -34,12 +34,12 @@ class PostList extends Component {
     home() {
         this.props.history.push('/');
     }
+
     render() {
         return (
             <div>
-                {/* <center><a href='/'><img src={logo} alt='talentbait_logo' style={{ width: '8%', height: 'auto' }}></img></a></center> */}
                 <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
-                <img  className="sized" src={logo} alt='talentbait_logo' ></img>
+                    <img className="sized" src={logo} alt='talentbait_logo' ></img>
                 </center></button>
                 {/* <h2 className="text-center"> Table</h2> */}
                 <div className="row">
@@ -57,9 +57,7 @@ class PostList extends Component {
                                 PostData.map(
                                     (element, key) =>
                                         <tr key={key}>
-                                            {/* <td onClick = { () => this.readElement(key) }>{element.title}</td> */}
                                             <td><button type="button" className="btn btn-link" onClick={() => this.readElement(key)}>{element.title}</button></td>
-                                            {/* <td><a href = {this.readElement(key)}>{element.title}</a></td> */}
                                             <td>{element.city}</td>
                                             <td>{element.employer}</td>
                                             <td>
@@ -67,6 +65,8 @@ class PostList extends Component {
                                             </td>
                                             <td>
                                                 {/* <button className="btn btn-outline-danger" onClick={() => this.deleteElement(key)}>Delete</button> */}
+                                                {/* <button className="btn btn-outline-danger" onClick={() => this.setState({ showTaskDialog: true })}>Delete</button>
+                                                <DeleteDialog show={this.state.showTaskDialog} confirm={this.state.confirm} /> */}
                                                 <button className="btn btn-outline-danger" onClick={() => { if (window.confirm('Click OK to delete')) this.deleteElement(key) }}>
                                                     Delete
                                                 </button>
@@ -76,7 +76,8 @@ class PostList extends Component {
                             }
                         </tbody>
                     </table>
-                    <button className="btn btn-primary" style={{ backgroundColor: '#3e55f4' }} onClick={() => this.newElement()}>New</button>
+
+                    <button className="btn btn-primary talentbait-blue" onClick={() => this.newElement()}>New</button>
                 </div>
             </div>
         );

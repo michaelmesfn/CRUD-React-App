@@ -3,7 +3,7 @@ import PostData from '../data/posts.json'
 import logo from "../talentbait_logo.png";
 
 import 'react-notifications-component/dist/theme.css'
-import {store} from 'react-notifications-component'
+import { store } from 'react-notifications-component'
 
 import '../App.css';
 
@@ -50,7 +50,7 @@ class UpdatePostList extends Component {
         PostData[this.state.index].employer = element.employer;
         PostData[this.state.index].requirements = element.requirements;
         PostData[this.state.index].tasks = element.tasks;
-        store.addNotification ({
+        store.addNotification({
             message: "Updated :)",
             type: "success",
             container: "top-right",
@@ -63,7 +63,8 @@ class UpdatePostList extends Component {
             },
             width: 600
         })
-        this.props.history.push('/elements');
+        this.props.history.push(`/read-view/${this.state.index}`);
+        // this.props.history.push("/index-view");
     }
 
     change_idHandler = (event) => {
@@ -81,13 +82,6 @@ class UpdatePostList extends Component {
         // this.state.employer = event.target.value;
     }
     changeTaskHandler = (event, index) => {
-        // this.setState({ tasks: event.target.value });
-        //console.log(event.target.value);
-        // console.log(event.target.value);
-        // console.log(this.state.tasks[0]);
-        // this.setState({ tasks : [] });
-        console.log(index);
-        console.log(event);
         this.setState(state => {
             const tasks = state.tasks.map((item, j) => {
                 if (j === index) {
@@ -103,23 +97,10 @@ class UpdatePostList extends Component {
             };
         });
     }
-    // deleteTaskRow = (event,index) => {
-    //     event.preventDefault();
-    //     console.log(index);
-    //     this.setState(state => {
-    //         // const tasks = state.tasks.filter((item,j) => item._id!==index);
-    //         //const tasks = state.tasks.filter(item => item._id !== index);
-    //         const tasks = this.state.tasks;
-    //         delete tasks[index];
-    //         return {
-    //             tasks,
-    //         };
-    //     });
-    // };
-    deleteTaskRow(event,index) {
+    deleteTaskRow(event, index) {
         event.preventDefault();
-        this.state.tasks.splice(index,1)
-        this.setState({tasks: this.state.tasks})
+        this.state.tasks.splice(index, 1)
+        this.setState({ tasks: this.state.tasks })
     }
     appendTask(event) {
         event.preventDefault();
@@ -142,21 +123,10 @@ class UpdatePostList extends Component {
             };
         });
     }
-    // deleteRequirementRow = (event,index) => {
-    //     event.preventDefault();
-    //     console.log(index);
-    //     this.setState(state => {
-    //         const requirements = this.state.requirements;
-    //         delete requirements[index];
-    //         return {
-    //             requirements,
-    //         };
-    //     });
-    // };
-    deleteRequirementRow(event,index) {
+    deleteRequirementRow(event, index) {
         event.preventDefault();
-        this.state.requirements.splice(index,1)
-        this.setState({requirements: this.state.requirements})
+        this.state.requirements.splice(index, 1)
+        this.setState({ requirements: this.state.requirements })
     }
     appendRequirement(event) {
         event.preventDefault();
@@ -164,7 +134,7 @@ class UpdatePostList extends Component {
         this.setState(prevState => ({ requirements: prevState.requirements.concat([newRequirement]) }));
     }
     cancel() {
-        this.props.history.push('/elements');
+        this.props.history.push('/index-view');
     }
     home() {
         this.props.history.push('/');
@@ -176,7 +146,7 @@ class UpdatePostList extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                        <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
+                            <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
                                 <img className="sized" src={logo} alt='talentbait_logo' ></img>
                             </center></button>
                             <div className="card-body">
@@ -203,7 +173,7 @@ class UpdatePostList extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label>Requirements: </label>
-                                        <center><table className="table table-borderless table-hover " style={{ width: "94%", backgroundColor: "#E9ECEF" }} >
+                                        <center><table className="table table-borderless table-hover reqtask-table">
                                             <tbody>
                                                 {
                                                     this.state.requirements.map(
@@ -212,7 +182,7 @@ class UpdatePostList extends Component {
                                                                 <td><input placeholder="Requirement" name="requirement" className="form-control"
                                                                     value={requirement} onChange={(e) => this.changeRequirementHandler(e, index)} /></td>
                                                                 <td>
-                                                                    <button className="btn btn-outline-danger" onClick={(e) => this.deleteRequirementRow(e,index)}>Delete</button>
+                                                                    <button className="btn btn-outline-danger" onClick={(e) => this.deleteRequirementRow(e, index)}>Delete</button>
                                                                 </td>
                                                             </tr>
                                                     )
@@ -223,7 +193,7 @@ class UpdatePostList extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label>Tasks: </label>
-                                        <center><table className="table table-borderless table-hover " style={{ width: "94%", backgroundColor: "#E9ECEF" }} >
+                                        <center><table className="table table-borderless table-hover reqtask-table" >
                                             <tbody>
                                                 {
                                                     this.state.tasks.map(
@@ -232,7 +202,7 @@ class UpdatePostList extends Component {
                                                                 <td><input placeholder="Task" name="task" className="form-control"
                                                                     value={task} onChange={(e) => this.changeTaskHandler(e, index)} /></td>
                                                                 <td>
-                                                                    <button className="btn btn-outline-danger" onClick={(e) => this.deleteTaskRow(e,index)}>Delete</button>
+                                                                    <button className="btn btn-outline-danger" onClick={(e) => this.deleteTaskRow(e, index)}>Delete</button>
                                                                 </td>
                                                             </tr>
                                                     )

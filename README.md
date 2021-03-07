@@ -1,7 +1,14 @@
 <<<<<<< HEAD
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Starting Instructions
+
+npm start
+Extra dependecies: react-router-dom, react-notifications-component
+TalentBait logo on top of every view serves as a link to the home-view
 
 ## Available Scripts
 

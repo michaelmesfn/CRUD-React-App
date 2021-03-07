@@ -52,6 +52,14 @@
   word-wrap: break-word; 
 }
 
+.talentbait-blue {
+  background-color: #3e55f4
+}
+
+.reqtask-table {
+  width: 94%;
+  background-color: #E9ECEF
+}
 .heighttext{
   height:30px
 }

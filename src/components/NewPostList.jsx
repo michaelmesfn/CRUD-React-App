@@ -3,7 +3,7 @@ import PostData from '../data/posts.json'
 import logo from "../talentbait_logo.png";
 
 import 'react-notifications-component/dist/theme.css'
-import {store} from 'react-notifications-component'
+import { store } from 'react-notifications-component'
 
 import '../App.css';
 
@@ -26,7 +26,7 @@ class NewPostList extends Component {
 
     newElement = (e) => {
         e.preventDefault();
-        
+
         let element = {
             _id: this.state._id,
             title: this.state.title,
@@ -35,13 +35,11 @@ class NewPostList extends Component {
             requirements: this.state.requirements,
             tasks: this.state.tasks
         };
-        console.log('element => ' + JSON.stringify(element));
-        console.log('index => ' + JSON.stringify(this.state._id));
         console.log(element);
         PostData.push(element);
-        store.addNotification ({
+        store.addNotification({
             message: "Added :)",
-            type: "success",
+            type: "default",
             container: "top-right",
             insert: "top",
             animationIn: ["animated", "fadeIn"],
@@ -52,7 +50,7 @@ class NewPostList extends Component {
             },
             width: 600
         })
-        this.props.history.push('/elements');
+        this.props.history.push('/index-view');
     }
 
     change_idHandler = (event) => {
@@ -70,8 +68,6 @@ class NewPostList extends Component {
         // this.state.employer = event.target.value;
     }
     changeTaskHandler = (event, index) => {
-        console.log(index);
-        console.log(event);
         this.setState(state => {
             const tasks = state.tasks.map((item, j) => {
                 if (j === index) {
@@ -87,10 +83,10 @@ class NewPostList extends Component {
             };
         });
     }
-    deleteTaskRow(event,index) {
+    deleteTaskRow(event, index) {
         event.preventDefault();
-        this.state.tasks.splice(index,1)
-        this.setState({tasks: this.state.tasks})
+        this.state.tasks.splice(index, 1)
+        this.setState({ tasks: this.state.tasks })
     }
     appendTask(event) {
         event.preventDefault();
@@ -113,10 +109,10 @@ class NewPostList extends Component {
             };
         });
     }
-    deleteRequirementRow(event,index) {
+    deleteRequirementRow(event, index) {
         event.preventDefault();
-        this.state.requirements.splice(index,1)
-        this.setState({requirements: this.state.requirements})
+        this.state.requirements.splice(index, 1)
+        this.setState({ requirements: this.state.requirements })
     }
     appendRequirement(event) {
         event.preventDefault();
@@ -124,7 +120,7 @@ class NewPostList extends Component {
         this.setState(prevState => ({ requirements: prevState.requirements.concat([newRequirement]) }));
     }
     cancel() {
-        this.props.history.push('/elements');
+        this.props.history.push('/index-view');
     }
     home() {
         this.props.history.push('/');
@@ -136,7 +132,7 @@ class NewPostList extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                        <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
+                            <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
                                 <img className="sized" src={logo} alt='talentbait_logo' ></img>
                             </center></button>
                             <div className="card-body">
@@ -163,7 +159,7 @@ class NewPostList extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label>Requirements: </label>
-                                        <center><table className="table table-borderless table-hover " style={{ width: "94%", backgroundColor: "#E9ECEF" }} >
+                                        <center><table className="table table-borderless table-hover reqtask-table"  >
                                             <tbody>
                                                 {
                                                     this.state.requirements.map(
@@ -172,7 +168,7 @@ class NewPostList extends Component {
                                                                 <td><input placeholder="Requirement" name="requirement" className="form-control"
                                                                     value={requirement} onChange={(e) => this.changeRequirementHandler(e, index)} /></td>
                                                                 <td>
-                                                                    <button className="btn btn-outline-danger" onClick={(e) => this.deleteRequirementRow(e,index)}>Delete</button>
+                                                                    <button className="btn btn-outline-danger" onClick={(e) => this.deleteRequirementRow(e, index)}>Delete</button>
                                                                 </td>
                                                             </tr>
                                                     )
@@ -183,7 +179,7 @@ class NewPostList extends Component {
                                     </div>
                                     <div className="form-group">
                                         <label>Tasks: </label>
-                                        <center><table className="table table-borderless table-hover " style={{ width: "94%", backgroundColor: "#E9ECEF" }} >
+                                        <center><table className="table table-borderless table-hover reqtask-table" >
                                             <tbody>
                                                 {
                                                     this.state.tasks.map(
@@ -192,7 +188,7 @@ class NewPostList extends Component {
                                                                 <td><input placeholder="Task" name="task" className="form-control"
                                                                     value={task} onChange={(e) => this.changeTaskHandler(e, index)} /></td>
                                                                 <td>
-                                                                    <button className="btn btn-outline-danger" onClick={(e) => this.deleteTaskRow(e,index)}>Delete</button>
+                                                                    <button className="btn btn-outline-danger" onClick={(e) => this.deleteTaskRow(e, index)}>Delete</button>
                                                                 </td>
                                                             </tr>
                                                     )

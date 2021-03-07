@@ -6,10 +6,10 @@ import ReadPostList from './components/ReadPostList';
 import UpdatePostList from './components/UpdatePostList';
 import DeletePostList from './components/DeletePostList';
 import NewPostList from './components/NewPostList';
-import Try from './components/Try'
 
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -18,13 +18,13 @@ function App() {
         <ReactNotification />
         <Switch>
           <Route path="/" exact component={PostList} />
-          <Route path="/elements" component={PostList} />
-          <Route path="/read-element/:index" component={ReadPostList} />
-          <Route path="/update-element/:index" component={UpdatePostList} />
-          <Route path="/delete-element/:index" component={DeletePostList} />
-          <Route path="/new-element/" component={NewPostList} />
-          <Route path="/try/" component={Try} />
+          <Route path="/index-view" component={PostList} />
+          <Route path="/read-view/:index" component={ReadPostList} />
+          <Route path="/update-view/:index" component={UpdatePostList} />
+          <Route path="/delete-view/:index" component={DeletePostList} />
+          <Route path="/create-view/" component={NewPostList} />
         </Switch>
+        <Footer />
       </div>
     </Router>
   );
