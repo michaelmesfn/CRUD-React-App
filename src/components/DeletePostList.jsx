@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PostData from '../data/posts.json'
 import logo from "../talentbait_logo.png";
-
+import '../App.css'
 class DeletePostList extends Component {
     constructor(props) {
         super(props)
@@ -24,6 +24,10 @@ class DeletePostList extends Component {
     cancel() {
         this.props.history.push('/elements');
     }
+    home() {
+        this.props.history.push('/');
+    }
+
 
     render() {
         return (
@@ -32,8 +36,9 @@ class DeletePostList extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            {/* <h3 className="text-center">Delete</h3> */}
-                            <center><a href='/'><img src={logo} alt='talentbait_logo' style={{ width: '8%', height: 'auto' }}></img></a></center>
+                        <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
+                                <img className="sized" src={logo} alt='talentbait_logo' ></img>
+                            </center></button>
                             <div className="card-body">
                                 <form>
                                     <h4>Are you sure?</h4>

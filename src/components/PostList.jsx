@@ -31,10 +31,16 @@ class PostList extends Component {
     componentDidMount() {
         console.log(PostData);
     }
+    home() {
+        this.props.history.push('/');
+    }
     render() {
         return (
             <div>
-                <center><a href='/'><img src={logo} alt='talentbait_logo' style={{ width: '8%', height: 'auto' }}></img></a></center>
+                {/* <center><a href='/'><img src={logo} alt='talentbait_logo' style={{ width: '8%', height: 'auto' }}></img></a></center> */}
+                <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
+                <img  className="sized" src={logo} alt='talentbait_logo' ></img>
+                </center></button>
                 {/* <h2 className="text-center"> Table</h2> */}
                 <div className="row">
                     <table className="table table-striped table-bordered">
@@ -60,7 +66,10 @@ class PostList extends Component {
                                                 <button className="btn btn-outline-secondary" onClick={() => this.editElement(key)}>Edit</button>
                                             </td>
                                             <td>
-                                                <button className="btn btn-outline-danger" onClick={() => this.deleteElement(key)}>Delete</button>
+                                                {/* <button className="btn btn-outline-danger" onClick={() => this.deleteElement(key)}>Delete</button> */}
+                                                <button className="btn btn-outline-danger" onClick={() => { if (window.confirm('Click OK to delete')) this.deleteElement(key) }}>
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                 )

@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import PostData from '../data/posts.json'
 import logo from "../talentbait_logo.png";
+
+import 'react-notifications-component/dist/theme.css'
+import {store} from 'react-notifications-component'
+
 import '../App.css';
 
 class UpdatePostList extends Component {
@@ -46,6 +50,19 @@ class UpdatePostList extends Component {
         PostData[this.state.index].employer = element.employer;
         PostData[this.state.index].requirements = element.requirements;
         PostData[this.state.index].tasks = element.tasks;
+        store.addNotification ({
+            message: "Updated :)",
+            type: "success",
+            container: "top-right",
+            insert: "top",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+                duration: 2000,
+                showIcon: true
+            },
+            width: 600
+        })
         this.props.history.push('/elements');
     }
 
@@ -149,7 +166,9 @@ class UpdatePostList extends Component {
     cancel() {
         this.props.history.push('/elements');
     }
-
+    home() {
+        this.props.history.push('/');
+    }
     render() {
         return (
             <div>
@@ -157,7 +176,9 @@ class UpdatePostList extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <center><a href='/'><img src={logo} alt='talentbait_logo' style={{ width: '8%', height: 'auto' }}></img></a></center>
+                        <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
+                                <img className="sized" src={logo} alt='talentbait_logo' ></img>
+                            </center></button>
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">

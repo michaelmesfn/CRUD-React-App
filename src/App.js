@@ -8,10 +8,14 @@ import DeletePostList from './components/DeletePostList';
 import NewPostList from './components/NewPostList';
 import Try from './components/Try'
 
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+
 function App() {
   return (
     <Router>
       <div className="container">
+        <ReactNotification />
         <Switch>
           <Route path="/" exact component={PostList} />
           <Route path="/elements" component={PostList} />

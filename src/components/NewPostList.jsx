@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import PostData from '../data/posts.json'
 import logo from "../talentbait_logo.png";
+
+import 'react-notifications-component/dist/theme.css'
+import {store} from 'react-notifications-component'
+
 import '../App.css';
 
 class NewPostList extends Component {
@@ -18,19 +22,11 @@ class NewPostList extends Component {
     }
 
     componentDidMount() {
-        // console.log(this.state.index);
-        // this.setState({
-        //     _id: PostData[this.state.index]._id,
-        //     title: PostData[this.state.index].title,
-        //     city: PostData[this.state.index].city,
-        //     employer: PostData[this.state.index].employer,
-        //     requirements: PostData[this.state.index].requirements,
-        //     tasks: PostData[this.state.index].tasks
-        // });
     }
 
     newElement = (e) => {
         e.preventDefault();
+        
         let element = {
             _id: this.state._id,
             title: this.state.title,
@@ -42,8 +38,20 @@ class NewPostList extends Component {
         console.log('element => ' + JSON.stringify(element));
         console.log('index => ' + JSON.stringify(this.state._id));
         console.log(element);
-        
         PostData.push(element);
+        store.addNotification ({
+            message: "Added :)",
+            type: "success",
+            container: "top-right",
+            insert: "top",
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+                duration: 2000,
+                showIcon: true
+            },
+            width: 600
+        })
         this.props.history.push('/elements');
     }
 
@@ -118,7 +126,9 @@ class NewPostList extends Component {
     cancel() {
         this.props.history.push('/elements');
     }
-
+    home() {
+        this.props.history.push('/');
+    }
     render() {
         return (
             <div>
@@ -126,7 +136,9 @@ class NewPostList extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            <center><a href='/'><img src={logo} alt='talentbait_logo' style={{ width: '8%', height: 'auto' }}></img></a></center>
+                        <button type="button" className="btn btn-link centered" onClick={this.home.bind(this)}> <center>
+                                <img className="sized" src={logo} alt='talentbait_logo' ></img>
+                            </center></button>
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
