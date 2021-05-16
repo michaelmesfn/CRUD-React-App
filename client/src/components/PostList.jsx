@@ -1,20 +1,31 @@
-import React, { Component } from 'react'
-import PostData from '../data/posts.json'
+import React, { Component } from 'react';
 import logo from "../talentbait_logo.png";
 import '../App.css';
+import WebUtils from "../WebUtils";
 
 class PostList extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-
+            PostData: []
         };
         this.editElement = this.editElement.bind(this);
     }
 
-    editElement(index) {
-        this.props.history.push(`/update-view/${index}`);
+    componentDidMount() {
+        WebUtils.getAllJobs()
+            .then(data =>{
+                console.log("PostList:componentDidMount", "finished", {data});
+                this.setState({
+                    PostData: data.payload || []
+                })
+            })
+            
+    }
+
+    editElement(id) {
+        this.props.history.push(`/update-view/${id}`);
     }
 
     deleteElement(index) {
@@ -28,15 +39,13 @@ class PostList extends Component {
     readElement(index) {
         this.props.history.push(`/read-view/${index}`);
     }
-    componentDidMount() {
-        console.log(PostData);
-    }
     //takes to home from the top logo
     home() {
         this.props.history.push('/');
     }
 
     render() {
+        const {PostData} = this.state;
         return (
             <div>
                 {/* logo on top serves as a link to the home-view */}

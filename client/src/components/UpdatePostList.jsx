@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import PostData from '../data/posts.json'
 import logo from "../talentbait_logo.png";
-
+import PostData from "../data/posts.json";
 import 'react-notifications-component/dist/theme.css'
 import { store } from 'react-notifications-component'
+
+import WebUtils from "../WebUtils";
 
 import '../App.css';
 
@@ -22,7 +23,7 @@ class UpdatePostList extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state.index);
+        console.log(this.state._idz);
         // setting the current state with values from the object
         this.setState({
             _id: PostData[this.state.index]._id,
@@ -46,27 +47,52 @@ class UpdatePostList extends Component {
         };
         console.log(element);
         // update object
-        PostData[this.state.index]._id = element._id;
-        PostData[this.state.index].title = element.title;
-        PostData[this.state.index].city = element.city;
-        PostData[this.state.index].employer = element.employer;
-        PostData[this.state.index].requirements = element.requirements;
-        PostData[this.state.index].tasks = element.tasks;
-        // notification
-        store.addNotification({
-            message: "Updated :)",
-            type: "success",
-            container: "top-right",
-            insert: "top",
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-                duration: 2000,
-                showIcon: true
-            },
-            width: 600
+        const updates = {};
+        updates.title = element.title;
+        updates.city = element.city;
+        updates.employer = element.employer;
+        updates.requirements = element.requirements;
+        updates.tasks = element.tasks;
+
+        PostData[this.state.index]= {
+            ...PostData[this.state.index],
+            updates
+        }
+
+        WebUtils.updateSingleJob(element._id, updates).then(() => {
+            // notification
+            store.addNotification({
+                message: "Updated :)",
+                type: "success",
+                container: "top-right",
+                insert: "top",
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                    duration: 2000,
+                    showIcon: true
+                },
+                width: 600
+            })
+            this.props.history.push(`/read-view/${this.state.index}`);
         })
-        this.props.history.push(`/read-view/${this.state.index}`);
+        .catch(error => {
+            // notification
+            store.addNotification({
+                message: "Failed",
+                type: "error",
+                container: "top-right",
+                insert: "top",
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                    duration: 2000,
+                    showIcon: true
+                },
+                width: 600
+            })
+        })
+
         // this.props.history.push("/index-view");
     }
 
